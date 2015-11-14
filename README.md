@@ -14,6 +14,14 @@ To compile it for a different OS (e.g. linux) use
 $ GOOS=linux go build -o simple-webserver
 ```
 
+### Build docker image
+
+Make sure to compile simple-webserver for linux before you start building the docker image.
+
+```sh
+$ docker build -t andygrunwald/simple-webserver:0.0.1 .
+```
+
 ## Usage
 
 ```sh
@@ -31,6 +39,24 @@ Under [releases](https://github.com/andygrunwald/simple-webserver/releases) you 
 This binary can be used for simple test purposes like running this via [Mesos](http://mesos.apache.org/)/[Marathon](https://github.com/mesosphere/marathon), [Docker](https://www.docker.com/), [rkt](https://github.com/coreos/rkt) or whatever you want to test.
 
 ## Deployment
+
+### Docker
+
+The docker image is available at [Docker Hub](https://hub.docker.com/r/andygrunwald/simple-webserver/).
+
+```sh
+$ docker pull andygrunwald/simple-webserver
+$ docker run -d -p 8082:8082 andygrunwald/simple-webserver
+9b20babef443420bf1728583fbfba......
+```
+
+After it you should be able to send a request:
+
+```sh
+$ curl http://docker-node:8082/ping
+pong
+```
+
 
 ### Marathon
 
