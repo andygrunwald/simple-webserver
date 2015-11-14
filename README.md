@@ -2,6 +2,9 @@
 
 A simple webserver for testing purposes written in [Go](http://golang.org/).
 
+With this webserver several tests can be done: Deployment, scheduling, scaling.
+The main goal is to test and get experiments with new systems like [Docker](https://www.docker.com/), [Mesos](http://mesos.apache.org/), [Marathon](https://mesosphere.github.io/marathon/), [Kubernetes](http://kubernetes.io/) and others.
+
 ## Compile
 
 ```sh
@@ -56,7 +59,6 @@ After it you should be able to send a request:
 $ curl http://docker-node:8082/ping
 pong
 ```
-
 
 ### Marathon
 
