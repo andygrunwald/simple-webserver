@@ -6,7 +6,6 @@
     "ports": [
         11000
     ],
-    "requirePorts": false,
     "instances": 1,
     "uris": [
         "https://github.com/andygrunwald/simple-webserver/releases/download/v0.0.1/simple-webserver-v0.0.1-linux-amd64.tar.gz"
