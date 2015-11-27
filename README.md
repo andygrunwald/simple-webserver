@@ -49,6 +49,13 @@ $ curl http://localhost:8082/ping
 pong
 ```
 
+or get the version:
+
+```sh
+$ curl http://localhost:8082/version
+simple webserver v0.1.0-dev
+```
+
 ## Binary
 
 At [releases](https://github.com/andygrunwald/simple-webserver/releases) you will find this simple webserver as pre compiled binary for various operating systems.
