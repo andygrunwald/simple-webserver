@@ -5,6 +5,12 @@ A simple webserver for testing purposes written in [Go](http://golang.org/).
 With this webserver several tests can be done: Deployment, scheduling, scaling.
 The main goal is to test and get experiments with new systems like [Docker](https://www.docker.com/), [Mesos](http://mesos.apache.org/), [Marathon](https://mesosphere.github.io/marathon/), [Kubernetes](http://kubernetes.io/) and others.
 
+Below you will find how to deploy with:
+
+* Docker
+* Marathon
+* Marathon + Docker
+
 ## Compile
 
 ```sh
@@ -19,25 +25,33 @@ $ GOOS=linux go build -o simple-webserver
 
 ### Build docker image
 
-Make sure to compile simple-webserver for linux before you start building the docker image.
+To build the Docker image execute ...
 
 ```sh
-$ docker build -t andygrunwald/simple-webserver:0.0.1 .
+$ docker build -t andygrunwald/simple-webserver .
 ```
 
+... or you use the existing images from [Docker Hub](https://hub.docker.com/r/andygrunwald/simple-webserver/).
+
 ## Usage
+
+Starting the service:
 
 ```sh
 $ ./simple-webserver
 2015/09/09 14:41:26 Starting webserver and listen on :8082
+```
 
+Sending requests to it:
+
+```sh
 $ curl http://localhost:8082/ping
 pong
 ```
 
 ## Binary
 
-Under [releases](https://github.com/andygrunwald/simple-webserver/releases) you will find this simple webserver as pre compiled binary for various operating systems.
+At [releases](https://github.com/andygrunwald/simple-webserver/releases) you will find this simple webserver as pre compiled binary for various operating systems.
 
 This binary can be used for simple test purposes like running this via [Mesos](http://mesos.apache.org/)/[Marathon](https://github.com/mesosphere/marathon), [Docker](https://www.docker.com/), [rkt](https://github.com/coreos/rkt) or whatever you want to test.
 
@@ -69,6 +83,26 @@ $ curl -X POST -H "Content-Type: application/json" http://marathon:8080/v2/apps 
 {
     "id": "/simple-webserver",
     "cmd": "cd simple-webserver-v0.0.1-linux-amd64 && chmod +x simple-webserver && ./simple-webserver --listen \":$PORT0\"",
+	...
+}
+```
+
+If you use Marathon in combination with [haproxy-marathon-bridge](https://open.mesosphere.com/tutorials/service-discovery/) for [service discovery](https://mesosphere.github.io/marathon/docs/service-discovery-load-balancing.html) your service is available via
+
+```sh
+$ curl http://marathon-node:11000/ping
+pong
+```
+
+### Marathon with Docker
+
+To deploy this application in a docker container to a [Marathon](https://github.com/mesosphere/marathon) cluster (scheduling framework for [Apache Mesos](http://mesos.apache.org/) use [marathon-docker.json](./marathon-docker.json) and call
+
+```sh
+$ curl -X POST -H "Content-Type: application/json" http://marathon:8080/v2/apps -d@marathon-docker.json
+{
+    "id":"/simple-webserver-docker",
+    "cmd":null,
 	...
 }
 ```
