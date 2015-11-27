@@ -3,8 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/gorilla/handlers"
 	"log"
 	"net/http"
+	"os"
 )
 
 const (
@@ -20,12 +22,19 @@ func main() {
 	)
 	flag.Parse()
 
-	http.HandleFunc("/", RootHandler)
-	http.HandleFunc("/ping", PingHandler)
-	http.HandleFunc("/version", VersionHandler)
+	// Define HTTP endpoints
+	s := http.NewServeMux()
+	s.HandleFunc("/", RootHandler)
+	s.HandleFunc("/ping", PingHandler)
+	s.HandleFunc("/version", VersionHandler)
 
-	log.Printf("Starting webserver and listen on %s", *listen)
-	log.Fatal(http.ListenAndServe(*listen, nil))
+	// Bootstrap logger
+	logger := log.New(os.Stdout, "", log.LstdFlags)
+	logger.Printf("Starting webserver and listen on %s", *listen)
+
+	// Start HTTP Server with request logging
+	loggingHandler := handlers.LoggingHandler(os.Stdout, s)
+	log.Fatal(http.ListenAndServe(*listen, loggingHandler))
 }
 
 // RootHandler handles requests to the "/" path.
