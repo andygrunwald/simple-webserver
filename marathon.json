@@ -1,7 +1,6 @@
 {
     "id": "/simple-webserver",
     "cmd": "cd simple-webserver-v0.0.1-linux-amd64 && chmod +x simple-webserver && ./simple-webserver --listen \":$PORT0\"",
-    "args": null,
     "cpus": 0.5,
     "mem": 128.0,
     "ports": [
@@ -9,15 +8,9 @@
     ],
     "requirePorts": false,
     "instances": 1,
-    "executor": "",
-    "container": null,
-    "env": {},
-    "constraints": [],
-    "labels": {},
     "uris": [
         "https://github.com/andygrunwald/simple-webserver/releases/download/v0.0.1/simple-webserver-v0.0.1-linux-amd64.tar.gz"
     ],
-    "dependencies": [],
     "healthChecks": [
         {
             "protocol": "HTTP",
@@ -29,9 +22,6 @@
             "maxConsecutiveFailures": 3
         }
     ],
-    "backoffSeconds": 1,
-    "backoffFactor": 1.15,
-    "maxLaunchDelaySeconds": 3600,
     "upgradeStrategy": {
         "minimumHealthCapacity": 1,
         "maximumOverCapacity": 1
