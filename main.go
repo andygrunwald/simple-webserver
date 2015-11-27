@@ -8,7 +8,9 @@ import (
 )
 
 const (
+	// Name of the application
 	Name = "simple webserver"
+	// Version of the application
 	Version = "0.1.0-dev"
 )
 
@@ -18,23 +20,29 @@ func main() {
 	)
 	flag.Parse()
 
-	http.HandleFunc("/", httpHandleRoot)
-	http.HandleFunc("/ping", httpHandlePing)
+	http.HandleFunc("/", RootHandler)
+	http.HandleFunc("/ping", PingHandler)
 	http.HandleFunc("/version", VersionHandler)
 
 	log.Printf("Starting webserver and listen on %s", *listen)
 	log.Fatal(http.ListenAndServe(*listen, nil))
 }
 
-func httpHandleRoot(resp http.ResponseWriter, req *http.Request) {
+// RootHandler handles requests to the "/" path.
+// It will redirect the request to /ping with a 303 HTTP header
+func RootHandler(resp http.ResponseWriter, req *http.Request) {
 	http.Redirect(resp, req, "/ping", http.StatusSeeOther)
 }
 
-func httpHandlePing(resp http.ResponseWriter, req *http.Request) {
+// PingHandler handles request to the "/ping" endpoint.
+// The response is obvious: pong :)
+func PingHandler(resp http.ResponseWriter, req *http.Request) {
 	resp.WriteHeader(http.StatusOK)
 	fmt.Fprintln(resp, "pong")
 }
 
+// VersionHandler handles request to the "/version" endpoint.
+// It prints the Name and Version of this app.
 func VersionHandler(resp http.ResponseWriter, req *http.Request) {
 	resp.WriteHeader(http.StatusOK)
 	fmt.Fprintf(resp, "%s v%s", Name, Version)
