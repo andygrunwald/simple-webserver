@@ -1,0 +1,32 @@
+{
+    "id": "/simple-webserver-docker",
+    "cpus": 1,
+    "mem": 128.0,
+    "instances": 1,
+    "container": {
+        "type": "DOCKER",
+        "docker": {
+            "image": "andygrunwald/simple-webserver",
+            "forcePullImage": true,
+            "network": "BRIDGE",
+            "portMappings": [
+              { "containerPort": 8082, "hostPort": 0, "servicePort": 11000, "protocol": "tcp" }
+            ]
+        }
+    },
+    "healthChecks": [
+        {
+            "protocol": "HTTP",
+            "path": "/ping",
+            "gracePeriodSeconds": 10,
+            "intervalSeconds": 60,
+            "portIndex": 0,
+            "timeoutSeconds": 10,
+            "maxConsecutiveFailures": 3
+        }
+    ],
+    "upgradeStrategy": {
+        "minimumHealthCapacity": 1,
+        "maximumOverCapacity": 1
+    }
+}
