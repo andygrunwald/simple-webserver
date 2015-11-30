@@ -14,6 +14,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * HTTP request logging to stdout
 * This changelog
 
+### Changed
+
+* Changed deployment for Marathon Docker to Port 11001
+
 ### Fixed
 
 * More documentation in README.md
