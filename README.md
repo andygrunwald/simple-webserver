@@ -117,7 +117,7 @@ $ curl -X POST -H "Content-Type: application/json" http://marathon:8080/v2/apps 
 If you use Marathon in combination with [haproxy-marathon-bridge](https://open.mesosphere.com/tutorials/service-discovery/) for [service discovery](https://mesosphere.github.io/marathon/docs/service-discovery-load-balancing.html) your service is available via
 
 ```sh
-$ curl http://marathon-node:11000/ping
+$ curl http://marathon-node:11001/ping
 pong
 ```
 

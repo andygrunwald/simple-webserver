@@ -10,7 +10,7 @@
             "forcePullImage": true,
             "network": "BRIDGE",
             "portMappings": [
-              { "containerPort": 8082, "hostPort": 0, "servicePort": 11000, "protocol": "tcp" }
+              { "containerPort": 8082, "hostPort": 0, "servicePort": 11001, "protocol": "tcp" }
             ]
         }
     },
