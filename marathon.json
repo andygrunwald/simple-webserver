@@ -1,8 +1,8 @@
 {
     "id": "/simple-webserver",
     "cmd": "cd simple-webserver-v0.0.1-linux-amd64 && chmod +x simple-webserver && ./simple-webserver --listen \":$PORT0\"",
-    "cpus": 1,
-    "mem": 128.0,
+    "cpus": 0.2,
+    "mem": 32.0,
     "ports": [
         11000
     ],
