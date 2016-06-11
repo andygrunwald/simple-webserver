@@ -110,6 +110,8 @@ $ curl http://marathon-node:11000/ping
 pong
 ```
 
+If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
+
 ### Marathon (docker container)
 
 Start the docker container on a [Marathon](https://github.com/mesosphere/marathon) cluster (scheduling framework for [Apache Mesos](http://mesos.apache.org/) with
@@ -130,6 +132,8 @@ If you use Marathon in combination with [haproxy-marathon-bridge](https://open.m
 $ curl http://marathon-node:11001/ping
 pong
 ```
+
+If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
 
 ## Contact
 
