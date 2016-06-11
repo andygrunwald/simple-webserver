@@ -11,16 +11,24 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Dockerfile to deploy simple-webserver with Docker
 * JSON definition to deploy simple-webserver in a Docker container to Marathon
 * HTTP-Endpoint `/version` that will respond with the Name and Version of this app with HTTP status code 200
+* HTTP-Endpoint `/kill` that will kill the webserver
 * HTTP request logging to stdout
 * This changelog
+* New Contact section to README
+* Recommendation for bobrik/mesos-compose to README
+* GoDoc
+* Unit tests
+* TravisCI
 
 ### Changed
 
-* Changed deployment for Marathon Docker to Port 11001
+* Deployment for Marathon Docker to Port 11001
+* Minimized hardware req. for simple-webserver (native) on Marathon
+* Removed \n from pong response
 
 ### Fixed
 
-* More documentation in README.md
+* Major refactoring (incl. more documentation) of README.md
 
 ## [v0.0.1] - 2015-09-09
 
