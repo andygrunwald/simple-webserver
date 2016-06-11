@@ -32,13 +32,13 @@ But the simplicity of this projects is on purpose and enables me to get a first 
 For building the native webserver you need a running [Go installation](https://golang.org/doc/install).
 
 ```sh
-$ go build .
+$ go build -o simple-webserver .
 ```
 
 To compile it for a different OS (e.g. linux) use
 
 ```sh
-$ GOOS=linux go build
+$ GOOS=linux go build -o simple-webserver .
 ```
 
 Precompiled binaries for various operating systems can be found in our [releases](https://github.com/andygrunwald/simple-webserver/releases).
