@@ -3,10 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/gorilla/handlers"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/gorilla/handlers"
 )
 
 const (
@@ -26,6 +27,7 @@ func main() {
 	s := http.NewServeMux()
 	s.HandleFunc("/", RootHandler)
 	s.HandleFunc("/ping", PingHandler)
+	s.HandleFunc("/kill", KillHandler)
 	s.HandleFunc("/version", VersionHandler)
 
 	// Bootstrap logger
@@ -48,6 +50,31 @@ func RootHandler(resp http.ResponseWriter, req *http.Request) {
 func PingHandler(resp http.ResponseWriter, req *http.Request) {
 	resp.WriteHeader(http.StatusOK)
 	fmt.Fprintln(resp, "pong")
+}
+
+// KillHandler handles request to the "/kill" endpoint.
+// Will shut down the webserver immediately (via exit code 0).
+// Only DELETE requests are accepted.
+// Other request methods will throw a HTTP Status Code 405 (Method Not Allowed)
+func KillHandler(resp http.ResponseWriter, req *http.Request) {
+	if req.Method != "DELETE" {
+		resp.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
+
+	// We need to send a HTTP Status Code 200 (OK)
+	// to respond that we have accepted the request.
+	// Here we send a chunked response to the requester.
+	flusher, ok := resp.(http.Flusher)
+	if !ok {
+		resp.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	resp.WriteHeader(http.StatusOK)
+	flusher.Flush()
+
+	// And we kill the server (like requested)
+	os.Exit(0)
 }
 
 // VersionHandler handles request to the "/version" endpoint.
