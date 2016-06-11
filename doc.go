@@ -1,5 +1,3 @@
-// Simple webserver
-//
 // A small webserver for testing various technologies, techniques and concepts.
 //
 // This project enables you to learn new technologies by try them in
