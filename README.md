@@ -143,6 +143,12 @@ pong
 
 If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
 
+## Things on the list to try
+
+* [Redis](http://redis.io/) backend for the golang webserver
+* [Docker Compose](https://docs.docker.com/compose/overview/)
+* [API Blueprint](https://apiblueprint.org/) specs
+
 ## Contact
 
 You are more than welcome to [open issues](https://github.com/andygrunwald/simple-webserver/issues) and / or [send pull requests](https://github.com/andygrunwald/simple-webserver/pulls) if you found a typo, a bug, need help to try something or want to request a new feature.

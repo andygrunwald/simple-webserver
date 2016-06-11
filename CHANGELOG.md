@@ -14,11 +14,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * HTTP-Endpoint `/kill` that will kill the webserver
 * HTTP request logging to stdout
 * This changelog
-* New Contact section to README
+* "Contact" section to README
 * Recommendation for bobrik/mesos-compose to README
 * GoDoc
 * Unit tests
 * TravisCI
+* "Things on the list to try" section to README
 
 ### Changed
 
