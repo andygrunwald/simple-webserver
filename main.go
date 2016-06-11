@@ -49,11 +49,11 @@ func RootHandler(resp http.ResponseWriter, req *http.Request) {
 // The response is obvious: pong :)
 func PingHandler(resp http.ResponseWriter, req *http.Request) {
 	resp.WriteHeader(http.StatusOK)
-	fmt.Fprintln(resp, "pong")
+	fmt.Fprintf(resp, "pong")
 }
 
 // KillHandler handles request to the "/kill" endpoint.
-// Will shut down the webserver immediately (via exit code 0).
+// Will shut down the webserver immediately (via exit code 1).
 // Only DELETE requests are accepted.
 // Other request methods will throw a HTTP Status Code 405 (Method Not Allowed)
 func KillHandler(resp http.ResponseWriter, req *http.Request) {
@@ -74,7 +74,7 @@ func KillHandler(resp http.ResponseWriter, req *http.Request) {
 	flusher.Flush()
 
 	// And we kill the server (like requested)
-	os.Exit(0)
+	os.Exit(1)
 }
 
 // VersionHandler handles request to the "/version" endpoint.
