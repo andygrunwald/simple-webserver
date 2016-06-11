@@ -9,7 +9,7 @@ A small webserver for testing various technologies, techniques and concepts writ
 
 Here you will find a list of tested technologies, techniques and concepts within this project:
 
-* [Go](http://golang.org/): How to write a small webserver in this programing language (incl. [GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver))
+* [Go](http://golang.org/): How to write a small webserver in this programing language (incl. [GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver) and [unit tests](./main_test.go))
 * [Docker](https://www.docker.com/): How to isolate a Go app in a docker container
 * [Marathon](https://mesosphere.github.io/marathon/) @ [Apache Mesos](http://mesos.apache.org/): How to deploy this app on a Marathon cluster (native and in a docker container)
 
@@ -42,6 +42,12 @@ $ GOOS=linux go build -o simple-webserver .
 ```
 
 Precompiled binaries for various operating systems can be found in our [releases](https://github.com/andygrunwald/simple-webserver/releases).
+
+If you want to execute the unit tests, run
+
+```sh
+$ go test -v ./...
+```
 
 ### Docker
 
