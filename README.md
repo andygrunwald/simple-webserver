@@ -131,6 +131,16 @@ $ curl http://marathon-node:11001/ping
 pong
 ```
 
+## Contact
+
+You are more than welcome to [open issues](https://github.com/andygrunwald/simple-webserver/issues) and / or [send pull requests](https://github.com/andygrunwald/simple-webserver/pulls) if you found a typo, a bug, need help to try something or want to request a new feature.
+
+**If you appreciate this project please feel free to drop me a line and tell me!*
+It's always nice to hear from people who have benefitted from this work and pushes the motivation again.**
+
+* Twitter: [@andygrunwald](https://twitter.com/andygrunwald)
+* Email: Checkout the mail at [my github profile](https://github.com/andygrunwald)
+
 ## License
 
 This project is released under the terms of the [MIT license](http://en.wikipedia.org/wiki/MIT_License).
