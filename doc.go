@@ -14,8 +14,11 @@
 // i suggest to checkout
 //
 // * https://blog.golang.org/godoc-documenting-go-code
+//
 // * https://godoc.org/golang.org/x/tools/cmd/godoc
+//
 // * https://github.com/fluhus/godoc-tricks
+//
 // * https://github.com/golang/gddo
 //
 // If you have any suggestion or comment, please feel free to open an issue on
