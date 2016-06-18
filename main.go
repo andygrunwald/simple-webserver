@@ -14,7 +14,7 @@ const (
 	// Name of the application
 	Name = "simple webserver"
 	// Version of the application
-	Version = "0.1.0-dev"
+	Version = "1.0.0"
 )
 
 func main() {
