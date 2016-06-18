@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 * Disk-Attribute to marathon.json (native app)
+* Disk-Attribute to marathon-docker.json (docker app)
 
 ### Fixed
 

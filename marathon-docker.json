@@ -2,6 +2,7 @@
     "id": "/simple-webserver-docker",
     "cpus": 1,
     "mem": 128.0,
+    "disk": 300,
     "instances": 1,
     "container": {
         "type": "DOCKER",
