@@ -3,6 +3,7 @@
     "cmd": "cd simple-webserver-v1.0.0-linux-amd64 && chmod +x simple-webserver && ./simple-webserver --listen \":$PORT0\"",
     "cpus": 0.2,
     "mem": 32.0,
+    "disk": 16,
     "ports": [
         11000
     ],
