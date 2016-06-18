@@ -62,7 +62,7 @@ func PingHandler(s Storage) http.HandlerFunc {
 			return
 		}
 		resp.WriteHeader(http.StatusOK)
-		fmt.Fprintf(resp, res)
+		fmt.Fprintln(resp, res)
 	}
 }
 
@@ -95,5 +95,5 @@ func KillHandler(resp http.ResponseWriter, req *http.Request) {
 // It prints the Name and Version of this app.
 func VersionHandler(resp http.ResponseWriter, req *http.Request) {
 	resp.WriteHeader(http.StatusOK)
-	fmt.Fprintf(resp, "%s v%s", Name, Version)
+	fmt.Fprintf(resp, "%s v%s\n", Name, Version)
 }

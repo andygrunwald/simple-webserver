@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 * Changed Marathon definitions to new v1.0.0 version
 * EXPOSE-Port of Dockerfile (from 8080 to 8082)
+* New lines after body for `/ping` and `/version`
 
 ## [v1.0.0] - 2016-06-18
 
