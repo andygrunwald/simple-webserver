@@ -206,6 +206,7 @@ If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-c
 
 * [Docker Compose](https://docs.docker.com/compose/overview/)
 * [API Blueprint](https://apiblueprint.org/) specs
+* [Blue-Green Deployment with Marathon](https://mesosphere.github.io/marathon/docs/blue-green-deploy.html)
 
 ## Contact
 
