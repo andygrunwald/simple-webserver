@@ -24,6 +24,7 @@ All guides how to use, play and use a technique or concept are documented here. 
 	3. [Marathon (native application)](marathon-native-application)
 	4. [Marathon (docker container)](#marathon-docker-container)
 	5. [Marathon incl. Redis backend (docker container)](#marathon-incl-redis-backend-docker-container)
+	6. [API Blueprint: Validating API description](#api-blueprint)
 5. [Things on the list to try](#things-on-the-list-to-try)
 6. [Contact](#contact)
 7. [License](#license)
@@ -239,6 +240,34 @@ PONG
 ```
 
 If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
+
+### API Blueprint: Validating API description
+
+[API Blueprint](https://apiblueprint.org/) is a powerful high-level API description language for web APIs.
+Based on out definition file [api-blueprint.apib](./api-blueprint.apib) we are able to ...
+
+... validate our API implementation (in *simple-webserver*) based on our API description / apib file with [dredd](https://github.com/apiaryio/dredd).
+dredd will analyze the description and generate HTTP tests and fire them against a running instance of *simple-webserver*.
+
+At first start an instance of simple-webserver. You can choose your favorite way. Native, Docker, Marathon, etc. Doesn't matter.
+
+After this, run *dredd* tests in a docker container:
+
+```sh
+$ docker run -it --rm \
+				--net host \
+				-v /HOST/PATH/TO/simple-webserver:/simple-webserver \
+				apiaryio/dredd \
+				dredd simple-webserver/api-blueprint.apib http://INSTANCE:8082
+info: Beginning Dredd testing...
+pass: HEAD / duration: 30ms
+...
+```
+
+Please replace
+
+* `/HOST/PATH/TO/simple-webserver` with an absolute path to a local copy of *simple-webserver* on your machine
+* `http://INSTANCE:8082` with IP:Port of a running instance of *simple-webserver*
 
 ## Things on the list to try
 

@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * New deployment method: Marathon incl. Redis backend (docker container)
 * Table of contents
 * New deployment method: Docker Compose
+* New technique: API Blueprint: Validating API description
 
 ### Fixed
 

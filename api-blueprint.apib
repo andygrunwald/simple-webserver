@@ -1,0 +1,59 @@
+FORMAT: 1A
+
+# Simple webserver
+
+Simple webserver is a small and simple API to play around with various technologies, techniques and concepts.
+
+# Root [/]
+
+Main entry point of simple-webserver.
+
+## Retrieve the content [HEAD]
+
++ Response 303 (text/plain; charset=utf-8)
+
+    + Header
+
+            Location: /ping
+
+# Storage Backend [/ping]
+
+Health endpoint to check if simple server has a connection to its storage backend.
+
+## Retrieve the health [GET]
+
++ Response 200 (text/plain; charset=utf-8)
+
+        PONG
+
++ Response 500 (text/plain; charset=utf-8)
+
+        dial tcp :6379: getsockopt: connection refused
+
+# Shutdown the server [/kill]
+
+Kills the server with an exit code of 1.
+
+## Try to kill it [GET]
+
++ Response 405 (text/plain; charset=utf-8)
+
+## Try to kill it [PUT]
+
++ Response 405 (text/plain; charset=utf-8)
+
+## Try to kill it [POST]
+
++ Response 405 (text/plain; charset=utf-8)
+
+# Information about the version [/version]
+
+Version of simple-webserver
+
+## Retrieve the version [GET]
+
++ Response 200 (text/plain; charset=utf-8)
+
+    + Body
+
+            simple webserver v1.0.0
