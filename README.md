@@ -25,6 +25,7 @@ All guides how to use, play and use a technique or concept are documented here. 
 	4. [Marathon (docker container)](#marathon-docker-container)
 	5. [Marathon incl. Redis backend (docker container)](#marathon-incl-redis-backend-docker-container)
 	6. [API Blueprint: Validating API description](#api-blueprint-validating-api-description)
+	7. [API Blueprint: Generating API docs]()
 5. [Things on the list to try](#things-on-the-list-to-try)
 6. [Contact](#contact)
 7. [License](#license)
@@ -269,9 +270,24 @@ Please replace
 * `/HOST/PATH/TO/simple-webserver` with an absolute path to a local copy of *simple-webserver* on your machine
 * `http://INSTANCE:8082` with IP:Port of a running instance of *simple-webserver*
 
+### API Blueprint: Generating API docs
+
+[API Blueprint](https://apiblueprint.org/) is a powerful high-level API description language for web APIs.
+Based on out definition file [api-blueprint.apib](./api-blueprint.apib) we are able to ...
+
+... generate our API documentation with [aglio](https://github.com/danielgtaylor/aglio).
+
+```sh
+$ docker run -ti --rm \
+				-v `pwd`:/docs \
+				humangeo/aglio -i api-blueprint.apib -o /docs/output.html
+```
+
+After this you can will find a new file `output.html` in the current directory.
+Open it and you should see you API documentation.
+
 ## Things on the list to try
 
-* [API Blueprint](https://apiblueprint.org/) specs
 * [Blue-Green Deployment with Marathon](https://mesosphere.github.io/marathon/docs/blue-green-deploy.html)
 
 ## Contact

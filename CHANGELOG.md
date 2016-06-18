@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Table of contents
 * New deployment method: Docker Compose
 * New technique: API Blueprint: Validating API description
+* New technique: API Blueprint: Generating API docs
 
 ### Fixed
 
