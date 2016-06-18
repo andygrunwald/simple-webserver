@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+* Changed Marathon definitions to new v1.0.0 version
+
 ## [v1.0.0] - 2016-06-18
 
 ### Added
