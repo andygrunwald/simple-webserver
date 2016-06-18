@@ -65,6 +65,17 @@ Or you use the existing images from [Docker Hub](https://hub.docker.com/r/andygr
 
 ### Native application
 
+The general usage of *simple-webserver* is
+
+```sh
+$ ./simple-webserver -help
+Usage of ./simple-webserver:
+  -listen string
+    	Address + Port to listen on. Format ip:port. (default ":8082")
+  -redis string
+    	Address + Port where a redis server is listening. (default ":6379")
+```
+
 Start the webserver with
 
 ```sh
@@ -79,6 +90,20 @@ $ curl http://localhost:8082/version
 simple webserver v0.1.0-dev
 ```
 
+If you have a Redis server available, you can apply it via command line flag:
+
+```sh
+$ ./simple-webserver -redis ":6379"
+2016/06/05 14:57:18 Starting webserver and listen on :8082
+```
+
+and call a `/ping` request
+
+```sh
+$ curl http://localhost:8082/ping
+PONG
+```
+
 ### Docker
 
 Start the container with
@@ -91,8 +116,17 @@ $ docker run -d -p 8082:8082 andygrunwald/simple-webserver
 and send your first request
 
 ```sh
-$ curl http://DOCKER-IP:8082/ping
-pong
+$ curl http://DOCKER-IP:8082/version
+simple webserver v0.1.0-dev
+```
+
+Or launch *simple-webserver* with a Redis backend
+
+```sh
+$ docker run --name simple-webserver-redis -d redis
+$ docker run -d -p 8082:8082 \
+				--link simple-webserver-redis:redis \
+				andygrunwald/simple-webserver -redis "redis:6379"
 ```
 
 For further information the docker image is available at [Docker Hub](https://hub.docker.com/r/andygrunwald/simple-webserver/).
