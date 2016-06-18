@@ -31,7 +31,7 @@ func TestPingHandler(t *testing.T) {
 		t.Errorf("Wrong status code: got %v, expected %v", status, http.StatusOK)
 	}
 
-	expected := "PONG"
+	expected := "PONG\n"
 	if rr.Body.String() != expected {
 		t.Errorf("Unexpected body: got %q, want %q", rr.Body.String(), expected)
 	}
@@ -79,7 +79,7 @@ func TestVersionHandler(t *testing.T) {
 		t.Errorf("Wrong status code: got %v, expected %v", status, http.StatusOK)
 	}
 
-	expected := fmt.Sprintf("%s v%s", Name, Version)
+	expected := fmt.Sprintf("%s v%s\n", Name, Version)
 	if rr.Body.String() != expected {
 		t.Errorf("Unexpected body: got %q, want %q", rr.Body.String(), expected)
 	}
