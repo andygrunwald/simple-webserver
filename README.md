@@ -4,7 +4,28 @@
 [![GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver?status.svg)](https://godoc.org/github.com/andygrunwald/simple-webserver)
 [![Go Report Card](https://goreportcard.com/badge/github.com/andygrunwald/simple-webserver)](https://goreportcard.com/report/github.com/andygrunwald/simple-webserver)
 
-A small webserver for testing various technologies, techniques and concepts written in [Go](http://golang.org/).
+A small webserver (written in [Go](http://golang.org/)) for testing various technologies, techniques and concepts like [Docker](https://www.docker.com/), [Marathon](https://mesosphere.github.io/marathon/) / [Apache Mesos](http://mesos.apache.org/), [API Blueprint](https://apiblueprint.org/) and others.
+
+All guides how to use, play and use a technique or concept are documented here. Feel free to play around and learn as much as i do.
+
+---
+
+## Table of Contents
+
+1. [Batteries Included](#batteries-included)
+2. [Why this project?](#why-this-project)
+3. [Build instructions](#build-instructions)
+	1. [Native application](#native-application)
+	2. [Docker](#docker)
+4. [Tryout everything](#tryout-everything)
+	1. [Native application](#native-application-1)
+	2. [Docker](#docker-1)
+	3. [Marathon (native application)](marathon-native-application)
+	4. [Marathon (docker container)](#marathon-docker-container)
+	5. [Marathon incl. Redis backend (docker container)](#marathon-incl-redis-backend-docker-container)
+5. [Things on the list to try](#things-on-the-list-to-try)
+6. [Contact](#contact)
+7. [License](#license)
 
 ## Batteries Included
 
