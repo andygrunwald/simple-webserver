@@ -1,0 +1,66 @@
+{
+  "id": "/simple-webserver",
+  "apps": [
+    {
+      "id": "/simple-webserver/webserver",
+      "cmd": "app -redis \"redis:6379\"",
+      "dependencies": [
+        "/simple-webserver/redis"
+      ],
+      "cpus": 0.5,
+      "mem": 128.0,
+      "disk": 300,
+      "instances": 1,
+      "constraints": [
+        ["hostname", "CLUSTER", "192.168.99.100"]
+      ],
+      "container": {
+        "type": "DOCKER",
+        "docker": {
+          "image": "andygrunwald/simple-webserver:v1.0.0",
+          "network": "BRIDGE",
+          "parameters": [
+            { "key": "link", "value": "simple-webserver-redis:redis" }
+          ],
+          "portMappings": [
+              { "containerPort": 8082, "hostPort": 0, "servicePort": 11001, "protocol": "tcp" }
+          ]
+        }
+      },
+      "healthChecks": [
+        {
+          "protocol": "HTTP",
+          "path": "/ping",
+          "gracePeriodSeconds": 10,
+          "intervalSeconds": 60,
+          "portIndex": 0,
+          "timeoutSeconds": 10,
+          "maxConsecutiveFailures": 3
+        }
+      ]
+    },
+    {
+      "id": "/simple-webserver/redis",
+      "cpus": 0.5,
+      "mem": 128,
+      "disk": 16,
+      "instances": 1,
+      "constraints": [
+        ["hostname", "CLUSTER", "192.168.99.100"]
+      ],
+      "container": {
+        "type": "DOCKER",
+        "docker": {
+          "image": "redis:3-alpine",
+          "network": "BRIDGE",
+          "parameters": [
+            { "key": "name", "value": "simple-webserver-redis" }
+          ],
+          "portMappings": [
+            { "containerPort": 6379, "hostPort": 0, "servicePort": 10401, "protocol": "tcp" }
+          ]
+        }
+      }
+    }
+  ]
+}

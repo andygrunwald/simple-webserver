@@ -87,7 +87,7 @@ and send your first request
 
 ```sh
 $ curl http://localhost:8082/version
-simple webserver v0.1.0-dev
+simple webserver v1.0.0
 ```
 
 If you have a Redis server available, you can apply it via command line flag:
@@ -117,7 +117,7 @@ and send your first request
 
 ```sh
 $ curl http://DOCKER-IP:8082/version
-simple webserver v0.1.0-dev
+simple webserver v1.0.0
 ```
 
 Or launch *simple-webserver* with a Redis backend
@@ -148,8 +148,8 @@ Please visit your Marathon UI at http://marathon:8080/ to see if the deployment 
 If you use Marathon in combination with [haproxy-marathon-bridge](https://open.mesosphere.com/tutorials/service-discovery/) or another [service discovery](https://mesosphere.github.io/marathon/docs/service-discovery-load-balancing.html) solution your service is available via the **service port 11000**
 
 ```sh
-$ curl http://marathon-node:11000/ping
-pong
+$ curl http://marathon-node:11000/version
+simple webserver v1.0.0
 ```
 
 If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
@@ -171,15 +171,39 @@ Please visit your Marathon UI at http://marathon:8080/ to see if the deployment 
 If you use Marathon in combination with [haproxy-marathon-bridge](https://open.mesosphere.com/tutorials/service-discovery/) or another [service discovery](https://mesosphere.github.io/marathon/docs/service-discovery-load-balancing.html) solution your service is available via the **service port 11001**
 
 ```sh
+$ curl http://marathon-node:11001/version
+simple webserver v1.0.0
+```
+
+If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
+
+### Marathon incl. Redis backend (docker container)
+
+Start the docker container with a Redis backend on a [Marathon](https://github.com/mesosphere/marathon) cluster (scheduling framework for [Apache Mesos](http://mesos.apache.org/) with
+
+```sh
+$ curl -X POST -H "Content-Type: application/json" http://marathon:8080/v2/groups -d@marathon-redis-docker.json
+{
+    "version":"2016-06-18T16:01:45.739Z",
+    ...
+}
+```
+
+Please visit your Marathon UI at http://marathon:8080/ to see if the deployment works out.
+
+If it doesn't work out, please check `constraints` value in [marathon-redis-docker.json](./marathon-redis-docker.json) if this is equal the IP of your Mesos slave. If not, adjust it accordingly.
+
+If you use Marathon in combination with [haproxy-marathon-bridge](https://open.mesosphere.com/tutorials/service-discovery/) or another [service discovery](https://mesosphere.github.io/marathon/docs/service-discovery-load-balancing.html) solution your service is available via the **service port 11001**
+
+```sh
 $ curl http://marathon-node:11001/ping
-pong
+PONG
 ```
 
 If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
 
 ## Things on the list to try
 
-* [Redis](http://redis.io/) backend for the golang webserver
 * [Docker Compose](https://docs.docker.com/compose/overview/)
 * [API Blueprint](https://apiblueprint.org/) specs
 
