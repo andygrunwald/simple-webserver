@@ -20,6 +20,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Unit tests
 * TravisCI
 * "Things on the list to try" section to README
+* Redis as /ping backend
+* Instructions for native and Docker based start with a Redis backend
 
 ### Changed
 
