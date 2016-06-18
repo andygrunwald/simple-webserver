@@ -9,21 +9,57 @@ import (
 	"testing"
 )
 
+type dummyStorage struct{}
+
+func (s *dummyStorage) Ping() (string, error) {
+	return "PONG", nil
+}
+
 func TestPingHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/ping", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
+	backend := &dummyStorage{}
+
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(PingHandler)
+	handler := http.HandlerFunc(PingHandler(backend))
 	handler.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("Wrong status code: got %v, expected %v", status, http.StatusOK)
 	}
 
-	expected := "pong"
+	expected := "PONG"
+	if rr.Body.String() != expected {
+		t.Errorf("Unexpected body: got %q, want %q", rr.Body.String(), expected)
+	}
+}
+
+type dummyErrorStorage struct{}
+
+func (s *dummyErrorStorage) Ping() (string, error) {
+	return "", fmt.Errorf("Connection timeout to storage backend")
+}
+
+func TestPingHandler_Error(t *testing.T) {
+	req, err := http.NewRequest("GET", "/ping", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	backend := &dummyErrorStorage{}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(PingHandler(backend))
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusInternalServerError {
+		t.Errorf("Wrong status code: got %v, expected %v", status, http.StatusInternalServerError)
+	}
+
+	expected := "Connection timeout to storage backend"
 	if rr.Body.String() != expected {
 		t.Errorf("Unexpected body: got %q, want %q", rr.Body.String(), expected)
 	}
