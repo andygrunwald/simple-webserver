@@ -10,7 +10,7 @@ A small webserver for testing various technologies, techniques and concepts writ
 
 Here you will find a list of tested technologies, techniques and concepts within this project:
 
-* [Go](http://golang.org/): How to write a small webserver in this programing language (incl. [GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver) and [unit tests](./main_test.go))
+* [Go](http://golang.org/): How to write a small webserver in this programming language (incl. [GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver) and [unit tests](./main_test.go))
 * [Travis CI](https://travis-ci.org/): Execute unit tests on every push and pull request
 * [Docker](https://www.docker.com/): How to isolate a Go app in a docker container
 * [Marathon](https://mesosphere.github.io/marathon/) @ [Apache Mesos](http://mesos.apache.org/): How to deploy this app on a Marathon cluster (native and in a docker container)
