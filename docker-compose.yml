@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  redis:
+    image: redis:3-alpine
+  simple-webserver:
+    image: andygrunwald/simple-webserver:v1.0.0
+    command: -redis "redis:6379"
+    depends_on:
+      - redis
+    links:
+      - redis
+    ports:
+      - "8082:8082"

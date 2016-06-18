@@ -20,6 +20,7 @@ All guides how to use, play and use a technique or concept are documented here. 
 4. [Tryout everything](#tryout-everything)
 	1. [Native application](#native-application-1)
 	2. [Docker](#docker-1)
+	3. [Docker Compose](#docker-compose)
 	3. [Marathon (native application)](marathon-native-application)
 	4. [Marathon (docker container)](#marathon-docker-container)
 	5. [Marathon incl. Redis backend (docker container)](#marathon-incl-redis-backend-docker-container)
@@ -34,6 +35,7 @@ Here you will find a list of tested technologies, techniques and concepts within
 * [Go](http://golang.org/): How to write a small webserver with a minimal [Redis](http://redis.io/) backend in this programming language (incl. [GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver) and [unit tests](./main_test.go))
 * [Travis CI](https://travis-ci.org/): Execute unit tests on every push and pull request
 * [Docker](https://www.docker.com/): How to isolate a Go app in a docker container
+* [Docker Compose](https://docs.docker.com/compose/): How to start a multi-container setup with one command
 * [Marathon](https://mesosphere.github.io/marathon/) @ [Apache Mesos](http://mesos.apache.org/): How to deploy this app on a Marathon cluster (native and in a docker container)
 
 ## Why this project?
@@ -152,6 +154,21 @@ $ docker run -d -p 8082:8082 \
 
 For further information the docker image is available at [Docker Hub](https://hub.docker.com/r/andygrunwald/simple-webserver/).
 
+### Docker Compose
+
+Fire up *simple-webserver* with a Redis backend with
+
+```sh
+$ docker-compose up -d
+```
+
+and call a `/ping` request
+
+```sh
+$ curl http://DOCKER-IP:8082/ping
+PONG
+```
+
 ### Marathon (native application)
 
 Start the native application on a [Marathon](https://github.com/mesosphere/marathon) cluster (scheduling framework for [Apache Mesos](http://mesos.apache.org/) with
@@ -225,7 +242,6 @@ If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-c
 
 ## Things on the list to try
 
-* [Docker Compose](https://docs.docker.com/compose/overview/)
 * [API Blueprint](https://apiblueprint.org/) specs
 * [Blue-Green Deployment with Marathon](https://mesosphere.github.io/marathon/docs/blue-green-deploy.html)
 
