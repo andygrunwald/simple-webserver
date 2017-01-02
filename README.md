@@ -40,6 +40,7 @@ Here you will find a list of tested technologies, techniques and concepts within
 * [Docker](https://www.docker.com/): How to isolate a Go app in a docker container
 * [Docker Compose](https://docs.docker.com/compose/): How to start a multi-container setup with one command
 * [Marathon](https://mesosphere.github.io/marathon/) @ [Apache Mesos](http://mesos.apache.org/): How to deploy this app on a Marathon cluster (native and in a docker container)
+* [API Blueprint](https://apiblueprint.org/): API development based on markdown specifications inclusive API doc generation by [aglio](https://github.com/danielgtaylor/aglio) and validation by [dredd](https://github.com/apiaryio/dredd).
 
 ## Why this project?
 
