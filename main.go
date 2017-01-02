@@ -19,8 +19,8 @@ const (
 
 func main() {
 	var (
-		listenFlag = flag.String("listen", ":8082", "Address + Port to listen on. Format ip:port.")
-		redisFlag  = flag.String("redis", ":6379", "Address + Port where a redis server is listening.")
+		listenFlag = flag.String("listen", EnvOrDefault("SIMPLE_WEBSERVER_LISTEN", ":8082"), "Address + Port to listen on. Format ip:port. Environment variable: SIMPLE_WEBSERVER_LISTEN")
+		redisFlag  = flag.String("redis", EnvOrDefault("SIMPLE_WEBSERVER_REDIS", ":6379"), "Address + Port where a redis server is listening. Environment variable: SIMPLE_WEBSERVER_REDIS")
 	)
 	flag.Parse()
 
@@ -96,4 +96,18 @@ func KillHandler(resp http.ResponseWriter, req *http.Request) {
 func VersionHandler(resp http.ResponseWriter, req *http.Request) {
 	resp.WriteHeader(http.StatusOK)
 	fmt.Fprintf(resp, "%s v%s\n", Name, Version)
+}
+
+// EnvOrDefault will read env from the environment.
+// If the environment variable is not set in the environment
+// fallback will be returned.
+// This function can be used as a value for flag.String to enable
+// env var support for your binary flags.
+func EnvOrDefault(env, fallback string) string {
+	value := fallback
+	if v := os.Getenv(env); v != "" {
+		value = v
+	}
+
+	return value
 }

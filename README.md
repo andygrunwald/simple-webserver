@@ -35,6 +35,7 @@ All guides how to use, play and use a technique or concept are documented here. 
 Here you will find a list of tested technologies, techniques and concepts within this project:
 
 * [Go](http://golang.org/): How to write a small webserver with a minimal [Redis](http://redis.io/) backend in this programming language (incl. [GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver) and [unit tests](./main_test.go))
+* Configure an application via environment variables (like described via [12factor](https://12factor.net/config))
 * [Travis CI](https://travis-ci.org/): Execute unit tests on every push and pull request
 * [Docker](https://www.docker.com/): How to isolate a Go app in a docker container
 * [Docker Compose](https://docs.docker.com/compose/): How to start a multi-container setup with one command
@@ -96,9 +97,9 @@ The general usage of *simple-webserver* is
 $ ./simple-webserver -help
 Usage of ./simple-webserver:
   -listen string
-    	Address + Port to listen on. Format ip:port. (default ":8082")
+    	Address + Port to listen on. Format ip:port. Environment variable: SIMPLE_WEBSERVER_LISTEN (default ":8082")
   -redis string
-    	Address + Port where a redis server is listening. (default ":6379")
+    	Address + Port where a redis server is listening. Environment variable: SIMPLE_WEBSERVER_REDIS (default ":6379")
 ```
 
 Start the webserver with

@@ -122,3 +122,20 @@ func TestKillHandler_WrongMethod(t *testing.T) {
 		t.Errorf("Wrong status code: got %v, expected %v", status, http.StatusMethodNotAllowed)
 	}
 }
+
+func TestEnvOrDefault_Fallback(t *testing.T) {
+	expected := "dummy"
+	got := EnvOrDefault("TEST_DEFAULT_ENV", expected)
+	if expected != got {
+		t.Errorf("Wrong fallback value: got %v, expected %v", got, expected)
+	}
+}
+
+func TestEnvOrDefault_WithEnv(t *testing.T) {
+	expected := "dummy-from-env"
+	os.Setenv("TEST_SET_ENV", expected)
+	got := EnvOrDefault("TEST_SET_ENV", "dummy-fallback")
+	if expected != got {
+		t.Errorf("Wrong env value: got %v, expected %v", got, expected)
+	}
+}
