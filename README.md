@@ -4,7 +4,7 @@
 [![GoDoc](https://godoc.org/github.com/andygrunwald/simple-webserver?status.svg)](https://godoc.org/github.com/andygrunwald/simple-webserver)
 [![Go Report Card](https://goreportcard.com/badge/github.com/andygrunwald/simple-webserver)](https://goreportcard.com/report/github.com/andygrunwald/simple-webserver)
 
-A small webserver (written in [Go](http://golang.org/)) for testing various technologies, techniques and concepts like [Docker](https://www.docker.com/), [Marathon](https://mesosphere.github.io/marathon/) / [Apache Mesos](http://mesos.apache.org/), [API Blueprint](https://apiblueprint.org/) and others.
+A small webserver (written in [Go](http://golang.org/)) for testing various technologies, techniques and concepts like [Docker](https://www.docker.com/), [Marathon](https://mesosphere.github.io/marathon/) / [Apache Mesos](http://mesos.apache.org/), [Kubernetes](http://kubernetes.io/), [API Blueprint](https://apiblueprint.org/) and others.
 
 All guides how to use, play and use a technique or concept are documented here. Feel free to play around and learn as much as i do.
 
@@ -24,8 +24,9 @@ All guides how to use, play and use a technique or concept are documented here. 
 	3. [Marathon (native application)](#marathon-native-application)
 	4. [Marathon (docker container)](#marathon-docker-container)
 	5. [Marathon incl. Redis backend (docker container)](#marathon-incl-redis-backend-docker-container)
-	6. [API Blueprint: Validating API description](#api-blueprint-validating-api-description)
-	7. [API Blueprint: Generating API docs](#api-blueprint-generating-api-docs)
+	6. [Kubernetes](#kubernetes)
+	7. [API Blueprint: Validating API description](#api-blueprint-validating-api-description)
+	8. [API Blueprint: Generating API docs](#api-blueprint-generating-api-docs)
 5. [Things on the list to try](#things-on-the-list-to-try)
 6. [Contact](#contact)
 7. [License](#license)
@@ -40,6 +41,7 @@ Here you will find a list of tested technologies, techniques and concepts within
 * [Docker](https://www.docker.com/): How to isolate a Go app in a docker container
 * [Docker Compose](https://docs.docker.com/compose/): How to start a multi-container setup with one command
 * [Marathon](https://mesosphere.github.io/marathon/) @ [Apache Mesos](http://mesos.apache.org/): How to deploy this app on a Marathon cluster (native and in a docker container)
+* [Kubernetes](http://kubernetes.io/): How to deploy this app on a Kubernetes cluster
 * [API Blueprint](https://apiblueprint.org/): API development based on markdown specifications inclusive API doc generation by [aglio](https://github.com/danielgtaylor/aglio) and validation by [dredd](https://github.com/apiaryio/dredd)
 
 ## Why this project?
@@ -243,6 +245,66 @@ PONG
 ```
 
 If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
+
+### Kubernetes
+
+In this section we assume you have already a running Kubernetes cluster incl. a configured [kubectl](http://kubernetes.io/docs/user-guide/prereqs/). Otherwise i recommend to read [Getting Started With A Local Kubernetes Environment](https://blog.giantswarm.io/getting-started-with-a-local-kubernetes-environment/) or [Installing/Setting Up Kubernetes @ Kubernetes Docs](http://kubernetes.io/docs/).
+
+In the [kubernetes.yaml](./kubernetes.yaml) you will find definitions for [Deployments](http://kubernetes.io/docs/user-guide/deployments/), [Services](http://kubernetes.io/docs/user-guide/services/) and an [Ingress Resource](http://kubernetes.io/docs/user-guide/ingress/).
+This definition will start the *simple-webserver* incl. a Redis instance.
+
+So lets start.
+Apply the definition:
+
+```sh
+$ kubectl apply --filename kubernetes.yaml
+service "simple-webserver" created
+deployment "simple-webserver" created
+service "simple-webserver-redis" created
+deployment "simple-webserver-redis" created
+ingress "simple-webserver" created
+```
+
+Check if all deployments are there:
+
+```sh
+$ kubectl get deployment -l app=simple-webserver
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+simple-webserver         1         1         1            1           24s
+simple-webserver-redis   1         1         1            1           24s
+```
+
+Check the services:
+
+```sh
+$ kubectl get svc -l app=simple-webserver
+NAME                     CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+simple-webserver         172.31.0.20    <nodes>       8082:30658/TCP   51s
+simple-webserver-redis   172.31.0.238   <none>        6379/TCP         50s
+```
+
+And have a look at your [pods](http://kubernetes.io/docs/user-guide/pods/):
+
+```
+$ kubectl get pods -l app=simple-webserver
+NAME                                      READY     STATUS    RESTARTS   AGE
+simple-webserver-494066648-8dkhm          1/1       Running   0          1m
+simple-webserver-redis-1815988752-09qog   1/1       Running   0          1m
+```
+
+Depending on your configuration *simple-webserver* should be accessible under your public ip / address via the Ingress resource.
+
+To clean it up and delete it, fire:
+
+```sh
+$ kubectl delete service,deployment,ingress simple-webserver
+service "simple-webserver" deleted
+deployment "simple-webserver" deleted
+ingress "simple-webserver" deleted
+$ kubectl delete service,deployment simple-webserver-redis
+service "simple-webserver-redis" deleted
+deployment "simple-webserver-redis" deleted
+```
 
 ### API Blueprint: Validating API description
 
