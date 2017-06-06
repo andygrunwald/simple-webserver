@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
+* HTTP-Endpoint `/payload` to debug HTTP calls
 * Disk-Attribute to marathon.json (native app)
 * Disk-Attribute to marathon-docker.json (docker app)
 * New deployment method: Marathon incl. Redis backend (docker container)

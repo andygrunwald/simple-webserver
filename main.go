@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"io/ioutil"
 
 	"github.com/gorilla/handlers"
 )
@@ -33,6 +34,7 @@ func main() {
 	s.HandleFunc("/ping", PingHandler(r))
 	s.HandleFunc("/kill", KillHandler)
 	s.HandleFunc("/version", VersionHandler)
+	s.HandleFunc("/payload", PayloadHandler)
 
 	// Bootstrap logger
 	logger := log.New(os.Stdout, "", log.LstdFlags)
@@ -96,6 +98,31 @@ func KillHandler(resp http.ResponseWriter, req *http.Request) {
 func VersionHandler(resp http.ResponseWriter, req *http.Request) {
 	resp.WriteHeader(http.StatusOK)
 	fmt.Fprintf(resp, "%s v%s\n", Name, Version)
+}
+
+// PayloadHandler handles request to the "/payload" endpoint.
+// It is a debug route to dump the complete request incl. method, header and body.
+func PayloadHandler(resp http.ResponseWriter, req *http.Request) {
+	body, err := ioutil.ReadAll(req.Body)
+	if err != nil {
+		resp.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	resp.WriteHeader(http.StatusOK)
+	fmt.Fprintf(resp, "Method: %s\n\n", req.Method)
+
+	if len(req.Header) > 0 {
+		fmt.Fprint(resp, "Headers:\n")
+		for key, values := range req.Header {
+			for _, val := range values {
+				fmt.Fprintf(resp, "%s: %s\n", key, val)
+			}
+		}
+		fmt.Fprint(resp, "\n")
+	}
+
+	fmt.Fprintf(resp, "Payload: %s", string(body))
 }
 
 // EnvOrDefault will read env from the environment.
