@@ -110,18 +110,21 @@ func PayloadHandler(resp http.ResponseWriter, req *http.Request) {
 	}
 
 	resp.WriteHeader(http.StatusOK)
-	fmt.Fprintf(resp, "Method: %s\n\n", req.Method)
+	log.Printf("Method: %s\n", req.Method)
+	fmt.Fprintf(resp, "Method: %s\n", req.Method)
 
 	if len(req.Header) > 0 {
+		log.Println("Headers:")
 		fmt.Fprint(resp, "Headers:\n")
 		for key, values := range req.Header {
 			for _, val := range values {
+				log.Printf("%s: %s\n", key, val)
 				fmt.Fprintf(resp, "%s: %s\n", key, val)
 			}
 		}
-		fmt.Fprint(resp, "\n")
 	}
 
+	log.Printf("Payload: %s", string(body))
 	fmt.Fprintf(resp, "Payload: %s", string(body))
 }
 
