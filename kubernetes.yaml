@@ -27,7 +27,7 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: andygrunwald/simple-webserver:v1.0.0
+      - image: andygrunwald/simple-webserver:v1.1.1
         name: simple-webserver
         command: ["app", "-redis", "simple-webserver-redis:6379"]
         ports:

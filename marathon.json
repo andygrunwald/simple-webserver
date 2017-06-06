@@ -1,6 +1,6 @@
 {
     "id": "/simple-webserver",
-    "cmd": "cd simple-webserver-v1.0.0-linux-amd64 && chmod +x simple-webserver && ./simple-webserver --listen \":$PORT0\"",
+    "cmd": "cd simple-webserver-v1.1.1-linux-amd64 && chmod +x simple-webserver && ./simple-webserver --listen \":$PORT0\"",
     "cpus": 0.2,
     "mem": 32.0,
     "disk": 16,
@@ -9,7 +9,7 @@
     ],
     "instances": 1,
     "uris": [
-        "https://github.com/andygrunwald/simple-webserver/releases/download/v1.0.0/simple-webserver-v1.0.0-linux-amd64.tar.gz"
+        "https://github.com/andygrunwald/simple-webserver/releases/download/v1.1.1/simple-webserver-v1.1.1-linux-amd64.tar.gz"
     ],
     "healthChecks": [
         {

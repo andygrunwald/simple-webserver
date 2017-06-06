@@ -7,7 +7,7 @@
     "container": {
         "type": "DOCKER",
         "docker": {
-            "image": "andygrunwald/simple-webserver:v1.0.0",
+            "image": "andygrunwald/simple-webserver:v1.1.1",
             "network": "BRIDGE",
             "portMappings": [
               { "containerPort": 8082, "hostPort": 0, "servicePort": 11001, "protocol": "tcp" }

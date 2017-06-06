@@ -4,7 +4,7 @@ services:
   redis:
     image: redis:3-alpine
   simple-webserver:
-    image: andygrunwald/simple-webserver:v1.0.0
+    image: andygrunwald/simple-webserver:v1.1.1
     command: -redis "redis:6379"
     depends_on:
       - redis

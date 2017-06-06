@@ -17,7 +17,7 @@
       "container": {
         "type": "DOCKER",
         "docker": {
-          "image": "andygrunwald/simple-webserver:v1.0.0",
+          "image": "andygrunwald/simple-webserver:v1.1.1",
           "network": "BRIDGE",
           "parameters": [
             { "key": "link", "value": "simple-webserver-redis:redis" }

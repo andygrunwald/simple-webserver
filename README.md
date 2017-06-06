@@ -116,7 +116,7 @@ and send your first request
 
 ```sh
 $ curl http://localhost:8082/version
-simple webserver v1.0.0
+simple webserver v1.1.1
 ```
 
 If you have a Redis server available, you can apply it via command line flag:
@@ -146,7 +146,7 @@ and send your first request
 
 ```sh
 $ curl http://DOCKER-IP:8082/version
-simple webserver v1.0.0
+simple webserver v1.1.1
 ```
 
 Or launch *simple-webserver* with a Redis backend
@@ -193,7 +193,7 @@ If you use Marathon in combination with [haproxy-marathon-bridge](https://open.m
 
 ```sh
 $ curl http://marathon-node:11000/version
-simple webserver v1.0.0
+simple webserver v1.1.1
 ```
 
 If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).
@@ -216,7 +216,7 @@ If you use Marathon in combination with [haproxy-marathon-bridge](https://open.m
 
 ```sh
 $ curl http://marathon-node:11001/version
-simple webserver v1.0.0
+simple webserver v1.1.1
 ```
 
 If you don`t have a Mesos / Marathon cluster, i highly recommend [bobrik/mesos-compose](https://github.com/bobrik/mesos-compose).

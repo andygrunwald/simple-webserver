@@ -9,6 +9,16 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 
+## [v1.1.1] - 2017-06-06
+
+### Added
+
+* Added log output logging to HTTP-Endpoint `/payload`
+
+### Fixed
+
+* Set version to v1.1.1 in all definitions
+
 ## [v1.1.0] - 2017-06-06
 
 ### Added
